@@ -16,8 +16,8 @@
 
 <body>
   <header class="header fixed-top">
-      <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #414141;">
-          <img class="navbar-brand" th:src="@{icon.png}"/>
+      <nav class="navbar navbar-expand-sm navbar-dark">
+          <img class="navbar-brand" src="/icon.png"/>
           <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId"
                   aria-expanded="false" aria-label="Toggle navigation"></button>
           <div class="collapse navbar-collapse" id="collapsibleNavId">
@@ -26,7 +26,7 @@
                       <a class="nav-link active" href="/boared" aria-current="page">Home <span class="visually-hidden">(current)</span></a>
                   </li>
                   <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Games</a>
+                      <a class="nav-link dropdown-toggle active" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Games</a>
                       <div class="dropdown-menu" aria-labelledby="dropdownId">
                           <a class="dropdown-item" href="#">Action</a>
                           <a class="dropdown-item" href="#">Adventure</a>
@@ -38,20 +38,20 @@
                           <a class="dropdown-item" href="#">Free to Play</a>
                       </div>
                   </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="/boared/user"><span th:text="${name}"></span></a>
+                  <li class="nav-item" th:unless="${name == 'Guest'}">
+                      <a class="nav-link active" href="/boared/user"><span th:text="${name}"></span></a>
                   </li>
                   <li class="nav-item">
-                      <a th:if="${name == 'Guest'}" class="nav-link" href="/boared/login"><span th:text="${log}"></span> </a>
+                      <a th:if="${name == 'Guest'}" class="nav-link active" href="/boared/login"><span th:text="${log}"></span> </a>
                       <form th:unless="${name == 'Guest'}" th:action="@{/boared/logout}" method="post">
                           <button id="name_btn" th:unless="${name == 'Guest'}" type="submit"><span th:text="${log}"></span> </button>
                       </form>
                   </li>
                   <li id="signInButton" class="nav-item">
-                      <a class="nav-link" href="/boared/signup">Sign up </a>
+                      <a class="nav-link active" href="/boared/signup">Sign up </a>
                   </li>
-                  <li id="cartButton" class="nav-item">
-                      <a class="nav-link" href="/boared/cart">Cart </a>
+                  <li id="cartButton" class="nav-item" th:unless="${name == 'Guest'}">
+                      <a class="nav-link active" href="/boared/cart">Cart </a>
                   </li>
               </ul>
               <form th:action="@{/search}" method="get" class="d-flex my-2 my-lg-0">
