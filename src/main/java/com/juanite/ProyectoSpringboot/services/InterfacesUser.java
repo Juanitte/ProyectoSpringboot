@@ -8,16 +8,20 @@ public interface InterfacesUser {
 
     public List<User> findAll();
 
-    public List<User> findById(int id);
+    public User findById(int id);
+
+    public User findByEmail(String email);
 
     public List<User> filterByName(String name);
 
     public List<User> filterByEmail(String email);
 
-    public User insert(String name, int age, String email);
+    public void insert(User user);
 
-    public User update(String name, int age, String email, int id);
+    public void update(String name, int age, String email, int id);
 
-    public User remove(int id);
+    public void remove(int id);
+
+    public void insertGame(int userId, int gameCode);
 
 }

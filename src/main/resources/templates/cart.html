@@ -76,14 +76,24 @@
           <td class="align-middle" th:text="${game.name}"></td>
           <td class="align-middle" th:text="${game.category}"></td>
           <td class="align-middle" th:text="${game.price}"></td>
-            <td class="align-middle">
-                <form th:action="@{/boared/addGame}" method="post">
-                    <input type="hidden" th:name="game" th:value="${game.code}" />
-                    <button id="add_btn" type="submit">Add </button>
-                </form>
-            </td>
         </tr>
       </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2">TOTAL</td>
+                <td colspan="2" th:text="${totalPrice}"></td>
+            </tr>
+            <tr>
+                <td class="align-middle">
+                    <form th:action="@{/boared/purchase}" method="post">
+                        <button type="submit">Purchase</button>
+                    </form>
+                </td>
+                <td class="align-middle">
+                    <button type="reset">Clear</button>
+                </td>
+            </tr>
+        </tfoot>
     </table>
   </main>
   <footer class="footer fixed-bottom">

@@ -21,8 +21,13 @@ public class ServicesUser implements InterfacesUser {
     }
 
     @Override
-    public List<User> findById(int id) {
+    public User findById(int id) {
         return repositoryUser.findById(id);
+    }
+
+    @Override
+    public User findByEmail(String email) {
+        return repositoryUser.findByEmail(email);
     }
 
     @Override
@@ -36,17 +41,22 @@ public class ServicesUser implements InterfacesUser {
     }
 
     @Override
-    public User insert(String name, int age, String email) {
-        return repositoryUser.insert(name,age,email);
+    public void insert(User user) {
+        repositoryUser.insert(user.getName(), user.getAge(), user.getEmail());
     }
 
     @Override
-    public User update(String name, int age, String email, int id) {
-        return repositoryUser.update(name,age,email,id);
+    public void update(String name, int age, String email, int id) {
+        repositoryUser.update(name,age,email,id);
     }
 
     @Override
-    public User remove(int id) {
-        return repositoryUser.remove(id);
+    public void remove(int id) {
+        repositoryUser.remove(id);
+    }
+
+    @Override
+    public void insertGame(int userId, int gameCode) {
+        repositoryUser.insertGame(userId,gameCode);
     }
 }

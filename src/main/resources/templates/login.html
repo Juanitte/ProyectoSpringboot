@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title>Boared - Home</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+</head>
+
+<body>
+  <header class="header fixed-top">
+      <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #414141;">
+          <img class="navbar-brand" th:src="@{icon.png}"/>
+          <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+                  aria-expanded="false" aria-label="Toggle navigation"></button>
+          <div class="collapse navbar-collapse" id="collapsibleNavId">
+              <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+                  <li class="nav-item">
+                      <a class="nav-link active" href="/boared" aria-current="page">Home <span class="visually-hidden">(current)</span></a>
+                  </li>
+                  <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Games</a>
+                      <div class="dropdown-menu" aria-labelledby="dropdownId">
+                          <a class="dropdown-item" href="#">Action</a>
+                          <a class="dropdown-item" href="#">Adventure</a>
+                          <a class="dropdown-item" href="#">RPG</a>
+                          <a class="dropdown-item" href="#">FPS</a>
+                          <a class="dropdown-item" href="#">Sports</a>
+                          <a class="dropdown-item" href="#">Racing</a>
+                          <a class="dropdown-item" href="#">Indie</a>
+                          <a class="dropdown-item" href="#">Free to Play</a>
+                      </div>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="/boared/user"><span th:text="${name}"></span></a>
+                  </li>
+                  <li class="nav-item">
+                      <a th:if="${name == 'Guest'}" class="nav-link" href="/boared/login"><span th:text="${log}"></span> </a>
+                      <form th:unless="${name == 'Guest'}" th:action="@{/boared/logout}" method="post">
+                          <button id="name_btn" th:unless="${name == 'Guest'}" type="submit"><span th:text="${log}"></span> </button>
+                      </form>
+                  </li>
+                  <li id="signInButton" class="nav-item">
+                      <a class="nav-link" href="/boared/signup">Sign up </a>
+                  </li>
+                  <li id="cartButton" class="nav-item">
+                      <a class="nav-link" href="/boared/cart">Cart </a>
+                  </li>
+              </ul>
+              <form th:action="@{/search}" method="get" class="d-flex my-2 my-lg-0">
+                  <input class="form-control me-sm-2" type="text" name="search" placeholder="Search">
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              </form>
+          </div>
+      </nav>
+  </header>
+  <main>
+    <form th:action="@{/boared/logUser}" th:object="${user}" method="post" style="margin-top: 60px">
+        <div>
+            <label>EMAIL
+                <input th:field="*{email}" type="text" name="email" placeholder="example@whatever.com">
+            </label>
+        </div>
+        <button class="btn-dark" type="submit">Log in</button>
+        <button class="btn-dark" type="reset">Reset</button>
+    </form>
+  </main>
+  <footer class="footer fixed-bottom">
+    <div class="container-fluid text-center">
+      <span class="text-muted">BOARED &copy; 2023 by Juanite</span>
+    </div>
+  </footer>
+  <!-- Bootstrap JavaScript Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+  </script>
+</body>
+
+</html>

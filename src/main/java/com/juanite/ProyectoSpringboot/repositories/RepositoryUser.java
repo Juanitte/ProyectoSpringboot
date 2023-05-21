@@ -16,7 +16,10 @@ public interface RepositoryUser extends JpaRepository<User,Long> {
     public List<User> findAll();
 
     @Query(value = "SELECT * FROM users WHERE id=?1" , nativeQuery = true)
-    public List<User> findById(@Param("id")int id);
+    public User findById(@Param("id")int id);
+
+    @Query(value = "SELECT * FROM users WHERE email=?1" , nativeQuery = true)
+    public User findByEmail(@Param("email")String email);
 
     @Query(value = "SELECT * FROM users WHERE name LIKE %?1%" , nativeQuery = true)
     public List<User> filterByName(@Param("name")String name);
@@ -27,12 +30,20 @@ public interface RepositoryUser extends JpaRepository<User,Long> {
     @Modifying
     @Transactional
     @Query(value = "INSERT INTO users(name,age,email) VALUES (?1,?2,?3)" , nativeQuery = true)
-    public User insert(@Param("name")String name, @Param("age")int age, @Param("email")String email);
+    public void insert(@Param("name")String name, @Param("age")int age, @Param("email")String email);
 
+    @Modifying
+    @Transactional
     @Query(value = "UPDATE users SET name=?1, age=?2, email=?3 WHERE id=?4" , nativeQuery = true)
-    public User update(@Param("name")String name, @Param("age")int age, @Param("email")String email, @Param("id")int id);
+    public void update(@Param("name")String name, @Param("age")int age, @Param("email")String email, @Param("id")int id);
 
+    @Modifying
+    @Transactional
     @Query(value = "DELETE FROM users WHERE id=?1", nativeQuery = true)
-    public User remove(@Param("id")int id);
+    public void remove(@Param("id")int id);
 
+    @Modifying
+    @Transactional
+    @Query(value = "INSERT INTO user_games(user_id,games_code) VALUES (?1,?2)" , nativeQuery = true)
+    public void insertGame(@Param("user_id") int id, @Param("games_code")int code);
 }

@@ -21,7 +21,7 @@ public class ServicesGame implements InterfacesGame {
     }
 
     @Override
-    public List<Game> findByCode(int code) {
+    public Game findByCode(int code) {
         return repositoryGame.findByCode(code);
     }
 
@@ -41,17 +41,12 @@ public class ServicesGame implements InterfacesGame {
     }
 
     @Override
-    public Game insert(String name, double price) {
-        return repositoryGame.insert(name,price);
+    public void save(Game game){
+        repositoryGame.save(game);
     }
 
     @Override
-    public Game update(String name, double price, int code) {
-        return repositoryGame.update(name,price,code);
-    }
-
-    @Override
-    public Game remove(int code) {
-        return repositoryGame.remove(code);
+    public void remove(int code) {
+        repositoryGame.remove(code);
     }
 }

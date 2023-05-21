@@ -8,7 +8,7 @@ public interface InterfacesGame {
 
     public List<Game> findAll();
 
-    public List<Game> findByCode(int code);
+    public Game findByCode(int code);
 
     public List<Game> filterByName(String name);
 
@@ -16,10 +16,8 @@ public interface InterfacesGame {
 
     public List<Game> findUserGames(int user_id);
 
-    public Game insert(String name, double price);
+    public void save(Game game);
 
-    public Game update(String name, double price, int code);
-
-    public Game remove(int code);
+    public void remove(int code);
 
 }
