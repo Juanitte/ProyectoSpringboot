@@ -31,4 +31,7 @@ public interface RepositoryGame extends JpaRepository<Game,Long> {
     @Query(value = "DELETE FROM games WHERE code=?1", nativeQuery = true)
     public void remove(@Param("code")int code);
 
+    @Query(value = "SELECT games.code FROM games JOIN users_games ON games.code = users_games.games_code WHERE users_games.user_id = ?1", nativeQuery = true)
+    public List<Integer> getUserGames(@Param("user_id")int userId);
+
 }

@@ -5,8 +5,8 @@ import lombok.Data;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.LinkedList;
+import java.util.List;
 
 @Data
 @Entity
@@ -33,7 +33,7 @@ public class User {
     @JoinTable(name = "users_games",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "games_code"))
-    private Set<Game> user_games = new LinkedHashSet<>();
+    private List<Game> user_games = new LinkedList<>();
 
     public User(String name, int age, String email) {
         this.name = name;

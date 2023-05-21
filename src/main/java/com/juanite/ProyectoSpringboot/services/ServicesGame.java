@@ -4,6 +4,7 @@ import com.juanite.ProyectoSpringboot.model.Game;
 import com.juanite.ProyectoSpringboot.repositories.RepositoryGame;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -48,5 +49,16 @@ public class ServicesGame implements InterfacesGame {
     @Override
     public void remove(int code) {
         repositoryGame.remove(code);
+    }
+
+    @Override
+    public List<Game> getUserGames(int userId) {
+        List<Game> games = new LinkedList<>();
+        List<Integer> codes = repositoryGame.getUserGames(userId);
+        for(Integer code : codes){
+            games.add(repositoryGame.findByCode(code));
+        }
+
+        return games;
     }
 }

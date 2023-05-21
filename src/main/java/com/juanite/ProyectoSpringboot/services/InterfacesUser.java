@@ -1,8 +1,10 @@
 package com.juanite.ProyectoSpringboot.services;
 
+import com.juanite.ProyectoSpringboot.model.Game;
 import com.juanite.ProyectoSpringboot.model.User;
 
 import java.util.List;
+import java.util.Set;
 
 public interface InterfacesUser {
 

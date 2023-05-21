@@ -1,10 +1,13 @@
 package com.juanite.ProyectoSpringboot.services;
 
+import com.juanite.ProyectoSpringboot.model.Game;
 import com.juanite.ProyectoSpringboot.model.User;
 import com.juanite.ProyectoSpringboot.repositories.RepositoryUser;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class ServicesUser implements InterfacesUser {
@@ -59,4 +62,5 @@ public class ServicesUser implements InterfacesUser {
     public void insertGame(int userId, int gameCode) {
         repositoryUser.insertGame(userId,gameCode);
     }
+
 }

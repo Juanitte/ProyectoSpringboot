@@ -4,6 +4,7 @@ import com.juanite.ProyectoSpringboot.model.Game;
 import com.juanite.ProyectoSpringboot.model.User;
 import com.juanite.ProyectoSpringboot.services.ServicesGame;
 import com.juanite.ProyectoSpringboot.services.ServicesUser;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class BoaredController {
@@ -25,8 +28,6 @@ public class BoaredController {
     private final ServicesUser servicesUser;
 
     private User loggedUser = new User();
-
-    private Game focusedGame = null;
 
     private List<Game> cartGames = new ArrayList<Game>();
 
@@ -57,21 +58,9 @@ public class BoaredController {
         }else{
             model.addAttribute("log", "Log out");
         }
-        List<Game> games = servicesGame.findAll();
-        model.addAttribute("games", games);
-        return "index";
-    }
-
-    @GetMapping("/boared/game")
-    public String game(Model model) {
-        model.addAttribute("game", focusedGame);
-        model.addAttribute("name", loggedUser.getName());
-        if(loggedUser.getName().equals("Guest")) {
-            model.addAttribute("log", "Log in");
-        }else{
-            model.addAttribute("log", "Log out");
-        }
-        return "game";
+        List<Game> userGames = servicesGame.getUserGames(loggedUser.getId());
+        model.addAttribute("games", userGames);
+        return "user";
     }
 
     @GetMapping("/boared/cart")
@@ -135,7 +124,6 @@ public class BoaredController {
     @PostMapping("/boared/logout")
     public RedirectView logout(Model model){
         loggedUser = new User();
-        focusedGame = null;
         cartGames = new ArrayList<Game>();
         return new RedirectView("/boared");
     }
@@ -151,12 +139,17 @@ public class BoaredController {
 
     @PostMapping("/boared/purchase")
     public RedirectView purchase(Model model){
-        loggedUser.getUser_games().addAll(cartGames);
         for(Game game : cartGames){
             servicesUser.insertGame(loggedUser.getId(), game.getCode());
         }
         cartGames.clear();
         return new RedirectView("/boared");
+    }
+
+    @PostMapping("/boared/clear")
+    public RedirectView clear(Model model){
+        cartGames.clear();
+        return new RedirectView("/boared/cart");
     }
 
 }

@@ -20,4 +20,6 @@ public interface InterfacesGame {
 
     public void remove(int code);
 
+    public List<Game> getUserGames(int userId);
+
 }

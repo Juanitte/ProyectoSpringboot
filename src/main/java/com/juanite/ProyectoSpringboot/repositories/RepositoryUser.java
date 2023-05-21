@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Set;
 
 public interface RepositoryUser extends JpaRepository<User,Long> {
 
@@ -44,6 +45,6 @@ public interface RepositoryUser extends JpaRepository<User,Long> {
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO user_games(user_id,games_code) VALUES (?1,?2)" , nativeQuery = true)
+    @Query(value = "INSERT INTO users_games(user_id,games_code) VALUES (?1,?2)" , nativeQuery = true)
     public void insertGame(@Param("user_id") int id, @Param("games_code")int code);
 }

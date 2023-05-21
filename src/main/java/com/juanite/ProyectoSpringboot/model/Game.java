@@ -5,8 +5,8 @@ import lombok.Data;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.LinkedList;
+import java.util.List;
 
 @Data
 @Entity
@@ -30,6 +30,6 @@ public class Game {
     private double price;
 
     @ManyToMany(mappedBy = "user_games")
-    private Set<User> users = new LinkedHashSet<>();
+    private List<User> users = new LinkedList<>();
 
 }

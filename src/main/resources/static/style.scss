@@ -1,0 +1,51 @@
+// Variables de colores
+$background: #565656;
+$header-background : #262626;
+$link-normal: #000;
+$link-hover: #222;
+$link-visited: #222;
+$link-active: #444;
+$white: #fff;
+$transparent: transparent;
+
+header , nav , li {
+  background-color: $header-background;
+  color: $white;
+}
+
+body {
+  background-color: $background;
+  color: $link-normal;
+}
+
+footer {
+  background-color: $header-background;
+}
+
+a {
+  color: $link-normal;
+  text-decoration: none;
+  &:hover {
+    color: $link-hover;
+  }
+  &:visited {
+    color: $link-visited;
+  }
+  &:active {
+    color: $link-active;
+  }
+}
+
+button {
+  background-color: $background;
+  border-color: $header-background;
+  color: $header-background;
+}
+
+#name_btn {
+  background-color: $transparent;
+  border-color: $transparent;
+  color: $white;
+}
+
+
